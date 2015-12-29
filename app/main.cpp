@@ -1,15 +1,12 @@
-#include "SkPaint.h"
-#include "SkString.h"
+#include "window.h"
+
+#include "SkGraphics.h"
 
 int main(int argc, char** argv)
 {
-  SkPaint paint;
-  paint.setColor(SK_ColorRED);
+  SkGraphics::Init();
+//  SkEvent::Init();
 
-  SkString str;
-  paint.toString(&str);
-
-  fprintf(stdout, "%s\n", str.c_str());
 
   return 0;
 }
