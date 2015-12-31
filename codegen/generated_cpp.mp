@@ -18,8 +18,22 @@
 // Message__@@=xname=@@_@@=mverb=@@_@@=mnoun=@@ (@@=mid=@@)
 struct Message__@@=xname=@@_@@=mverb=@@_@@=mnoun=@@
 {
+  Message__@@=xname=@@_@@=mverb=@@_@@=mnoun=@@ () noexcept
+@@> delimiter = ": "
+@@> for parameter in (xprependParameters + mparameters)
+@@>   ptype         = parameter.get :type
+@@>   pname         = parameter.get :name
+@@>   pdefaultValue = parameter.get :defaultValue
+@@>   pmappedtype   = $TypeMap.get(ptype)
+    @@=delimiter=@@@@=pname=@@ {}
+@@>   delimiter = ", "
+@@> end
+  {
+  }
+
   Message__@@=xname=@@_@@=mverb=@@_@@=mnoun=@@ (Message__@@=xname=@@_@@=mverb=@@_@@=mnoun=@@ &&) = default;
   Message__@@=xname=@@_@@=mverb=@@_@@=mnoun=@@ & operator= (Message__@@=xname=@@_@@=mverb=@@_@@=mnoun=@@ &&) = default;
+
 
   void unserialize (input_stream & is)
   {

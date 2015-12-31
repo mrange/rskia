@@ -8,8 +8,13 @@
 // Message__Internal_Do_Nothing (16)
 struct Message__Internal_Do_Nothing
 {
+  Message__Internal_Do_Nothing () noexcept
+  {
+  }
+
   Message__Internal_Do_Nothing (Message__Internal_Do_Nothing &&) = default;
   Message__Internal_Do_Nothing & operator= (Message__Internal_Do_Nothing &&) = default;
+
 
   void unserialize (input_stream & is)
   {
@@ -26,8 +31,13 @@ struct Message__Internal_Do_Nothing
 // Message__Internal_Discard_Window (17)
 struct Message__Internal_Discard_Window
 {
+  Message__Internal_Discard_Window () noexcept
+  {
+  }
+
   Message__Internal_Discard_Window (Message__Internal_Discard_Window &&) = default;
   Message__Internal_Discard_Window & operator= (Message__Internal_Discard_Window &&) = default;
+
 
   void unserialize (input_stream & is)
   {
@@ -44,8 +54,13 @@ struct Message__Internal_Discard_Window
 // Message__Internal_Create_BitmapFromBits (18)
 struct Message__Internal_Create_BitmapFromBits
 {
+  Message__Internal_Create_BitmapFromBits () noexcept
+  {
+  }
+
   Message__Internal_Create_BitmapFromBits (Message__Internal_Create_BitmapFromBits &&) = default;
   Message__Internal_Create_BitmapFromBits & operator= (Message__Internal_Create_BitmapFromBits &&) = default;
+
 
   void unserialize (input_stream & is)
   {
@@ -62,8 +77,14 @@ struct Message__Internal_Create_BitmapFromBits
 // Message__Global_Set_Background (32)
 struct Message__Global_Set_Background
 {
+  Message__Global_Set_Background () noexcept
+    : color {}
+  {
+  }
+
   Message__Global_Set_Background (Message__Global_Set_Background &&) = default;
   Message__Global_Set_Background & operator= (Message__Global_Set_Background &&) = default;
+
 
   void unserialize (input_stream & is)
   {
@@ -82,8 +103,13 @@ struct Message__Global_Set_Background
 // Message__Global_Clear_Visuals (33)
 struct Message__Global_Clear_Visuals
 {
+  Message__Global_Clear_Visuals () noexcept
+  {
+  }
+
   Message__Global_Clear_Visuals (Message__Global_Clear_Visuals &&) = default;
   Message__Global_Clear_Visuals & operator= (Message__Global_Clear_Visuals &&) = default;
+
 
   void unserialize (input_stream & is)
   {
@@ -100,8 +126,13 @@ struct Message__Global_Clear_Visuals
 // Message__Global_Hide_Window (34)
 struct Message__Global_Hide_Window
 {
+  Message__Global_Hide_Window () noexcept
+  {
+  }
+
   Message__Global_Hide_Window (Message__Global_Hide_Window &&) = default;
   Message__Global_Hide_Window & operator= (Message__Global_Hide_Window &&) = default;
+
 
   void unserialize (input_stream & is)
   {
@@ -118,8 +149,13 @@ struct Message__Global_Hide_Window
 // Message__Global_Show_Window (35)
 struct Message__Global_Show_Window
 {
+  Message__Global_Show_Window () noexcept
+  {
+  }
+
   Message__Global_Show_Window (Message__Global_Show_Window &&) = default;
   Message__Global_Show_Window & operator= (Message__Global_Show_Window &&) = default;
+
 
   void unserialize (input_stream & is)
   {
@@ -136,8 +172,13 @@ struct Message__Global_Show_Window
 // Message__Global_Await_Downloads (36)
 struct Message__Global_Await_Downloads
 {
+  Message__Global_Await_Downloads () noexcept
+  {
+  }
+
   Message__Global_Await_Downloads (Message__Global_Await_Downloads &&) = default;
   Message__Global_Await_Downloads & operator= (Message__Global_Await_Downloads &&) = default;
+
 
   void unserialize (input_stream & is)
   {
@@ -154,8 +195,13 @@ struct Message__Global_Await_Downloads
 // Message__Global_Await_Refresh (37)
 struct Message__Global_Await_Refresh
 {
+  Message__Global_Await_Refresh () noexcept
+  {
+  }
+
   Message__Global_Await_Refresh (Message__Global_Await_Refresh &&) = default;
   Message__Global_Await_Refresh & operator= (Message__Global_Await_Refresh &&) = default;
+
 
   void unserialize (input_stream & is)
   {
@@ -172,8 +218,15 @@ struct Message__Global_Await_Refresh
 // Message__Bitmap_Download_Bitmap (48)
 struct Message__Bitmap_Download_Bitmap
 {
+  Message__Bitmap_Download_Bitmap () noexcept
+    : bitmapId {}
+    , uri {}
+  {
+  }
+
   Message__Bitmap_Download_Bitmap (Message__Bitmap_Download_Bitmap &&) = default;
   Message__Bitmap_Download_Bitmap & operator= (Message__Bitmap_Download_Bitmap &&) = default;
+
 
   void unserialize (input_stream & is)
   {
@@ -194,8 +247,15 @@ struct Message__Bitmap_Download_Bitmap
 // Message__Brush_Create_SolidBrush (64)
 struct Message__Brush_Create_SolidBrush
 {
+  Message__Brush_Create_SolidBrush () noexcept
+    : brushId {}
+    , color {}
+  {
+  }
+
   Message__Brush_Create_SolidBrush (Message__Brush_Create_SolidBrush &&) = default;
   Message__Brush_Create_SolidBrush & operator= (Message__Brush_Create_SolidBrush &&) = default;
+
 
   void unserialize (input_stream & is)
   {
@@ -216,8 +276,19 @@ struct Message__Brush_Create_SolidBrush
 // Message__Brush_Create_LinearGradientBrush (65)
 struct Message__Brush_Create_LinearGradientBrush
 {
+  Message__Brush_Create_LinearGradientBrush () noexcept
+    : brushId {}
+    , startX {}
+    , startY {}
+    , endX {}
+    , endY {}
+    , extendMode {}
+  {
+  }
+
   Message__Brush_Create_LinearGradientBrush (Message__Brush_Create_LinearGradientBrush &&) = default;
   Message__Brush_Create_LinearGradientBrush & operator= (Message__Brush_Create_LinearGradientBrush &&) = default;
+
 
   void unserialize (input_stream & is)
   {
@@ -246,8 +317,21 @@ struct Message__Brush_Create_LinearGradientBrush
 // Message__Brush_Create_RadialGradientBrush (66)
 struct Message__Brush_Create_RadialGradientBrush
 {
+  Message__Brush_Create_RadialGradientBrush () noexcept
+    : brushId {}
+    , centerX {}
+    , centerY {}
+    , radiusX {}
+    , radiusY {}
+    , offsetX {}
+    , offsetY {}
+    , extendMode {}
+  {
+  }
+
   Message__Brush_Create_RadialGradientBrush (Message__Brush_Create_RadialGradientBrush &&) = default;
   Message__Brush_Create_RadialGradientBrush & operator= (Message__Brush_Create_RadialGradientBrush &&) = default;
+
 
   void unserialize (input_stream & is)
   {
@@ -280,8 +364,16 @@ struct Message__Brush_Create_RadialGradientBrush
 // Message__Brush_Create_GradientStopForBrush (67)
 struct Message__Brush_Create_GradientStopForBrush
 {
+  Message__Brush_Create_GradientStopForBrush () noexcept
+    : brushId {}
+    , color {}
+    , offset {}
+  {
+  }
+
   Message__Brush_Create_GradientStopForBrush (Message__Brush_Create_GradientStopForBrush &&) = default;
   Message__Brush_Create_GradientStopForBrush & operator= (Message__Brush_Create_GradientStopForBrush &&) = default;
+
 
   void unserialize (input_stream & is)
   {
@@ -304,8 +396,14 @@ struct Message__Brush_Create_GradientStopForBrush
 // Message__Visual_Remove_Visual (80)
 struct Message__Visual_Remove_Visual
 {
+  Message__Visual_Remove_Visual () noexcept
+    : visualId {}
+  {
+  }
+
   Message__Visual_Remove_Visual (Message__Visual_Remove_Visual &&) = default;
   Message__Visual_Remove_Visual & operator= (Message__Visual_Remove_Visual &&) = default;
+
 
   void unserialize (input_stream & is)
   {
@@ -324,8 +422,15 @@ struct Message__Visual_Remove_Visual
 // Message__Visual_Clone_Visual (81)
 struct Message__Visual_Clone_Visual
 {
+  Message__Visual_Clone_Visual () noexcept
+    : visualId {}
+    , cloneVisualId {}
+  {
+  }
+
   Message__Visual_Clone_Visual (Message__Visual_Clone_Visual &&) = default;
   Message__Visual_Clone_Visual & operator= (Message__Visual_Clone_Visual &&) = default;
+
 
   void unserialize (input_stream & is)
   {
@@ -346,8 +451,16 @@ struct Message__Visual_Clone_Visual
 // Message__Visual_Move_Visual (82)
 struct Message__Visual_Move_Visual
 {
+  Message__Visual_Move_Visual () noexcept
+    : visualId {}
+    , x {}
+    , y {}
+  {
+  }
+
   Message__Visual_Move_Visual (Message__Visual_Move_Visual &&) = default;
   Message__Visual_Move_Visual & operator= (Message__Visual_Move_Visual &&) = default;
+
 
   void unserialize (input_stream & is)
   {
@@ -370,8 +483,14 @@ struct Message__Visual_Move_Visual
 // Message__Visual_Move_VisualToTop (83)
 struct Message__Visual_Move_VisualToTop
 {
+  Message__Visual_Move_VisualToTop () noexcept
+    : visualId {}
+  {
+  }
+
   Message__Visual_Move_VisualToTop (Message__Visual_Move_VisualToTop &&) = default;
   Message__Visual_Move_VisualToTop & operator= (Message__Visual_Move_VisualToTop &&) = default;
+
 
   void unserialize (input_stream & is)
   {
@@ -390,8 +509,14 @@ struct Message__Visual_Move_VisualToTop
 // Message__Visual_Move_VisualToBottom (84)
 struct Message__Visual_Move_VisualToBottom
 {
+  Message__Visual_Move_VisualToBottom () noexcept
+    : visualId {}
+  {
+  }
+
   Message__Visual_Move_VisualToBottom (Message__Visual_Move_VisualToBottom &&) = default;
   Message__Visual_Move_VisualToBottom & operator= (Message__Visual_Move_VisualToBottom &&) = default;
+
 
   void unserialize (input_stream & is)
   {
@@ -410,8 +535,16 @@ struct Message__Visual_Move_VisualToBottom
 // Message__Visual_Resize_Visual (85)
 struct Message__Visual_Resize_Visual
 {
+  Message__Visual_Resize_Visual () noexcept
+    : visualId {}
+    , width {}
+    , height {}
+  {
+  }
+
   Message__Visual_Resize_Visual (Message__Visual_Resize_Visual &&) = default;
   Message__Visual_Resize_Visual & operator= (Message__Visual_Resize_Visual &&) = default;
+
 
   void unserialize (input_stream & is)
   {
@@ -434,8 +567,20 @@ struct Message__Visual_Resize_Visual
 // Message__Visual_Create_BitmapVisual (86)
 struct Message__Visual_Create_BitmapVisual
 {
+  Message__Visual_Create_BitmapVisual () noexcept
+    : visualId {}
+    , bitmapId {}
+    , opacity {}
+    , centerX {}
+    , centerY {}
+    , width {}
+    , height {}
+  {
+  }
+
   Message__Visual_Create_BitmapVisual (Message__Visual_Create_BitmapVisual &&) = default;
   Message__Visual_Create_BitmapVisual & operator= (Message__Visual_Create_BitmapVisual &&) = default;
+
 
   void unserialize (input_stream & is)
   {
@@ -466,8 +611,21 @@ struct Message__Visual_Create_BitmapVisual
 // Message__Visual_Create_RectangleVisual (87)
 struct Message__Visual_Create_RectangleVisual
 {
+  Message__Visual_Create_RectangleVisual () noexcept
+    : visualId {}
+    , fillBrushId {}
+    , strokeBrushId {}
+    , strokeWidth {}
+    , centerX {}
+    , centerY {}
+    , width {}
+    , height {}
+  {
+  }
+
   Message__Visual_Create_RectangleVisual (Message__Visual_Create_RectangleVisual &&) = default;
   Message__Visual_Create_RectangleVisual & operator= (Message__Visual_Create_RectangleVisual &&) = default;
+
 
   void unserialize (input_stream & is)
   {
@@ -500,8 +658,21 @@ struct Message__Visual_Create_RectangleVisual
 // Message__Visual_Create_EllipseVisual (88)
 struct Message__Visual_Create_EllipseVisual
 {
+  Message__Visual_Create_EllipseVisual () noexcept
+    : visualId {}
+    , fillBrushId {}
+    , strokeBrushId {}
+    , strokeWidth {}
+    , centerX {}
+    , centerY {}
+    , width {}
+    , height {}
+  {
+  }
+
   Message__Visual_Create_EllipseVisual (Message__Visual_Create_EllipseVisual &&) = default;
   Message__Visual_Create_EllipseVisual & operator= (Message__Visual_Create_EllipseVisual &&) = default;
+
 
   void unserialize (input_stream & is)
   {
