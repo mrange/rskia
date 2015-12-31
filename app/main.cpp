@@ -1,12 +1,14 @@
-#include "window.h"
+#include "window.hpp"
 
 #include "SkGraphics.h"
 
-int main(int argc, char** argv)
+void application_init ()
 {
-  SkGraphics::Init();
-//  SkEvent::Init();
+  SkGraphics::Init ();
+  SkEvent::Init ();
+}
 
-
-  return 0;
+void application_term ()
+{
+  SkEvent::Term ();
 }

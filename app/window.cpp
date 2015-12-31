@@ -1,14 +1,4 @@
-/*
- * Copyright 2015 Google Inc.
- *
- *
- * Use of this source code is governed by a BSD-style license that can be
- * found in the LICENSE file.
- *
- */
-
-#include "window.h"
-
+#include "window.hpp"
 
 #include "gl/GrGLInterface.h"
 #include "GrContext.h"
@@ -18,180 +8,224 @@
 #include "SkGraphics.h"
 #include "SkGr.h"
 
-void application_init() {
-    SkGraphics::Init();
-    SkEvent::Init();
+MainWindow::MainWindow (void* hwnd)
+  : base_t          (hwnd)
+  , fFrameCount      (0)
+  , fRotationAngle  (0)
+  , fType           (DeviceType::GPU)
+  , fSurface        (nullptr)
+  , fContext        (nullptr)
+  , fRenderTarget   (nullptr)
+  , fAttachmentInfo {}
+  , fInterface      (nullptr)
+{
+  this->setTitle ();
+  this->setUpBackend ();
 }
 
-void application_term() {
-    SkEvent::Term();
+MainWindow::~MainWindow ()
+{
+  tearDownBackend ();
 }
 
-HelloWorldWindow::HelloWorldWindow(void* hwnd)
-    : INHERITED(hwnd) {
-    frameCount = 0;
-    fType = kGPU_DeviceType;
-    fRenderTarget = NULL;
-    fRotationAngle = 0;
-    this->setTitle();
-    this->setUpBackend();
+void MainWindow::tearDownBackend ()
+{
+  SkSafeUnref (fRenderTarget);
+  fRenderTarget = NULL;
+
+  SkSafeUnref (fContext);
+  fContext = NULL;
+
+  SkSafeUnref (fInterface);
+  fInterface = NULL;
+
+  base_t::detach ();
 }
 
-HelloWorldWindow::~HelloWorldWindow() {
-    tearDownBackend();
+void MainWindow::setTitle ()
+{
+  SkString title ("Hello World ");
+  title.appendf (fType == DeviceType::Raster ? "raster" : "opengl");
+  base_t::setTitle (title.c_str ());
 }
 
-void HelloWorldWindow::tearDownBackend() {
-    SkSafeUnref(fContext);
-    fContext = NULL;
+bool MainWindow::setUpBackend ()
+{
+  this->setColorType (kRGBA_8888_SkColorType);
+  this->setVisibleP (true);
+  this->setClipToBounds (false);
 
-    SkSafeUnref(fInterface);
-    fInterface = NULL;
+  bool result = attach (kNativeGL_BackEndType, 0 /*msaa*/, &fAttachmentInfo);
+  if (false == result)
+  {
+    SkDebugf ("Not possible to create backend.\n");
+    detach ();
+    return false;
+  }
 
-    SkSafeUnref(fRenderTarget);
-    fRenderTarget = NULL;
+  fInterface = GrGLCreateNativeInterface ();
 
-    INHERITED::detach();
+  SkASSERT (NULL != fInterface);
+
+  fContext = GrContext::Create (kOpenGL_GrBackend, (GrBackendContext)fInterface);
+  SkASSERT (NULL != fContext);
+
+  this->setUpRenderTarget ();
+  return true;
 }
 
-void HelloWorldWindow::setTitle() {
-    SkString title("Hello World ");
-    title.appendf(fType == kRaster_DeviceType ? "raster" : "opengl");
-    INHERITED::setTitle(title.c_str());
+void MainWindow::setUpRenderTarget ()
+{
+  SkSafeUnref (fRenderTarget);
+  fRenderTarget = this->renderTarget (fAttachmentInfo, fInterface, fContext);
 }
 
-bool HelloWorldWindow::setUpBackend() {
-    this->setColorType(kRGBA_8888_SkColorType);
-    this->setVisibleP(true);
-    this->setClipToBounds(false);
+void MainWindow::drawContents (SkCanvas* canvas)
+{
+  // Clear background
+  canvas->drawColor (SK_ColorWHITE);
 
-    bool result = attach(kNativeGL_BackEndType, 0 /*msaa*/, &fAttachmentInfo);
-    if (false == result) {
-        SkDebugf("Not possible to create backend.\n");
-        detach();
-        return false;
-    }
+  SkPaint paint;
+  paint.setColor (SK_ColorRED);
 
-    fInterface = GrGLCreateNativeInterface();
-
-    SkASSERT(NULL != fInterface);
-
-    fContext = GrContext::Create(kOpenGL_GrBackend, (GrBackendContext)fInterface);
-    SkASSERT(NULL != fContext);
-
-    this->setUpRenderTarget();
-    return true;
-}
-
-void HelloWorldWindow::setUpRenderTarget() {
-    SkSafeUnref(fRenderTarget);
-    fRenderTarget = this->renderTarget(fAttachmentInfo, fInterface, fContext);
-}
-
-void HelloWorldWindow::drawContents(SkCanvas* canvas) {
-    // Clear background
-    canvas->drawColor(SK_ColorWHITE);
-
-    SkPaint paint;
-    paint.setColor(SK_ColorRED);
-
-    // Draw a rectangle with red paint
-    SkRect rect = {
-            10, 10,
-            128, 128
-    };
-    canvas->drawRect(rect, paint);
-
-    // Set up a linear gradient and draw a circle
+  // Draw a rectangle with red paint
+  SkRect rect
     {
-        SkPoint linearPoints[] = {
-                {0, 0},
-                {300, 300}
-        };
-        SkColor linearColors[] = {SK_ColorGREEN, SK_ColorBLACK};
+      10  , 10  ,
+      128 , 128 ,
+    };
+  canvas->drawRect (rect, paint);
 
-        SkShader* shader = SkGradientShader::CreateLinear(
-                linearPoints, linearColors, NULL, 2,
-                SkShader::kMirror_TileMode);
-        SkAutoUnref shader_deleter(shader);
+  // Set up a linear gradient and draw a circle
+  {
+    SkPoint linearPoints[]
+      {
+        {0    , 0   },
+        {300  , 300 },
+      };
 
-        paint.setShader(shader);
-        paint.setFlags(SkPaint::kAntiAlias_Flag);
+    SkColor linearColors[] { SK_ColorGREEN, SK_ColorBLACK, };
 
-        canvas->drawCircle(200, 200, 64, paint);
+    SkShader* shader = SkGradientShader::CreateLinear (
+        linearPoints
+      , linearColors
+      , NULL
+      , 2
+      , SkShader::kMirror_TileMode
+      );
 
-        // Detach shader
-        paint.setShader(NULL);
-    }
+    SkAutoUnref shader_deleter (shader);
 
-    // Draw a message with a nice black paint.
-    paint.setFlags(
-            SkPaint::kAntiAlias_Flag |
-            SkPaint::kSubpixelText_Flag |  // ... avoid waggly text when rotating.
-            SkPaint::kUnderlineText_Flag);
-    paint.setColor(SK_ColorBLACK);
-    paint.setTextSize(20);
+    paint.setShader (shader);
+    paint.setFlags (SkPaint::kAntiAlias_Flag);
 
-    canvas->save();
+    canvas->drawCircle (200, 200, 64, paint);
 
-    ++frameCount;
-    char buffer[256];
-    sprintf (buffer, "FrameCount: %d", frameCount);
+    // Detach shader
+    paint.setShader (NULL);
+  }
 
-    // Translate and rotate
-    canvas->translate(300, 300);
-    fRotationAngle += 0.2f;
-    if (fRotationAngle > 360) {
-        fRotationAngle -= 360;
-    }
-    canvas->rotate(fRotationAngle);
+  // Draw a message with a nice black paint.
+  paint.setFlags (
+      SkPaint::kAntiAlias_Flag
+    | SkPaint::kSubpixelText_Flag   // ... avoid waggly text when rotating.
+    | SkPaint::kUnderlineText_Flag
+    );
+  paint.setColor (SK_ColorBLACK);
+  paint.setTextSize (20);
 
-    // Draw the text:
-    canvas->drawText(buffer, strlen(buffer), 0, 0, paint);
+  canvas->save ();
 
-    canvas->restore();
+  ++fFrameCount;
+  char buffer[256];
+  sprintf (buffer, "FrameCount: %d", fFrameCount);
+
+  // Translate and rotate
+  canvas->translate (300, 300);
+  fRotationAngle += 0.2f;
+  if (fRotationAngle > 360)
+  {
+    fRotationAngle -= 360;
+  }
+  canvas->rotate (fRotationAngle);
+
+  // Draw the text:
+  canvas->drawText (buffer, strlen (buffer), 0, 0, paint);
+
+  canvas->restore ();
 }
 
-void HelloWorldWindow::draw(SkCanvas* canvas) {
-    drawContents(canvas);
-    // in case we have queued drawing calls
-    fContext->flush();
-    // Invalidate the window to force a redraw. Poor man's animation mechanism.
-    this->inval(NULL);
+SkSurface* MainWindow::createSurface ()
+{
+  SkSurfaceProps props (base_t::getSurfaceProps ());
 
-    if (kRaster_DeviceType == fType) {
-        // need to send the raster bits to the (gpu) window
-        SkImage* snap = fSurface->newImageSnapshot();
-        size_t rowBytes;
-        SkImageInfo info;
-        const void* pixels = snap->peekPixels(&info, &rowBytes);
-        fRenderTarget->writePixels(0, 0, snap->width(), snap->height(),
-                                        SkImageInfo2GrPixelConfig(info.colorType(),
-                                                                info.alphaType(),
-                                                                info.profileType()),
-                                        pixels,
-                                        rowBytes,
-                                        GrContext::kFlushWrites_PixelOp);
-        SkSafeUnref(snap);
-    }
-    INHERITED::present();
+  if (DeviceType::GPU == fType)
+  {
+    return SkSurface::NewRenderTargetDirect (fRenderTarget, &props);
+  }
+
+  SkImageInfo info = SkImageInfo::MakeN32Premul (
+      SkScalarRoundToInt (this->width ())
+    , SkScalarRoundToInt (this->height ())
+    );
+
+  return fSurface = SkSurface::NewRaster (info, &props);
 }
 
-void HelloWorldWindow::onSizeChange() {
-    setUpRenderTarget();
+void MainWindow::draw (SkCanvas* canvas)
+{
+  drawContents (canvas);
+  // in case we have queued drawing calls
+  fContext->flush ();
+  // Invalidate the window to force a redraw. Poor man's animation mechanism.
+  this->inval (NULL);
+
+  if (DeviceType::Raster == fType)
+  {
+    // need to send the raster bits to the (gpu) window
+    SkImage* snap = fSurface->newImageSnapshot ();
+    size_t rowBytes;
+    SkImageInfo info;
+    const void* pixels = snap->peekPixels (&info, &rowBytes);
+    fRenderTarget->writePixels (
+        0
+      , 0
+      , snap->width ()
+      , snap->height ()
+      , SkImageInfo2GrPixelConfig (
+            info.colorType ()
+          , info.alphaType ()
+          , info.profileType ()
+          )
+      , pixels
+      , rowBytes
+      ,GrContext::kFlushWrites_PixelOp
+      );
+    SkSafeUnref (snap);
+  }
+  base_t::present ();
 }
 
-bool HelloWorldWindow::onHandleChar(SkUnichar unichar) {
-    if (' ' == unichar) {
-        fType = fType == kRaster_DeviceType ? kGPU_DeviceType: kRaster_DeviceType;
-        tearDownBackend();
-        setUpBackend();
-        this->setTitle();
-        this->inval(NULL);
-    }
-    return true;
+void MainWindow::onSizeChange ()
+{
+  setUpRenderTarget ();
 }
 
-SkOSWindow* create_sk_window(void* hwnd, int , char** ) {
-    return new HelloWorldWindow(hwnd);
+bool MainWindow::onHandleChar (SkUnichar unichar)
+{
+  if (' ' == unichar)
+  {
+    fType = fType == DeviceType::Raster ? DeviceType::GPU : DeviceType::Raster;
+    tearDownBackend ();
+    setUpBackend ();
+    this->setTitle ();
+    this->inval (NULL);
+  }
+
+  return true;
+}
+
+SkOSWindow* create_sk_window (void* hwnd, int , char**)
+{
+  return new MainWindow (hwnd);
 }

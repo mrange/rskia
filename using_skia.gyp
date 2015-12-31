@@ -22,6 +22,7 @@
         'third_party/skia/include/xml'
       ],
       'sources': [
+        'app/main.cpp',
         'app/window.cpp'
       ],
       'ldflags': [
