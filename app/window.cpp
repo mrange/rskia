@@ -10,7 +10,7 @@
 
 MainWindow::MainWindow (void* hwnd)
   : base_t          (hwnd)
-  , fFrameCount      (0)
+  , fFrameCount     (0)
   , fRotationAngle  (0)
   , fType           (DeviceType::GPU)
   , fSurface        (nullptr)

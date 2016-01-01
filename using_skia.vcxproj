@@ -1,0 +1,394 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release_Developer|Win32">
+      <Configuration>Release_Developer</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{A9226F3A-4111-9BF3-940F-4627B3F4648C}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>using_skia</RootNamespace>
+    <IgnoreWarnCompileDuplicatedFilename>true</IgnoreWarnCompileDuplicatedFilename>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props"/>
+  <PropertyGroup Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+  </PropertyGroup>
+  <PropertyGroup Label="Locals">
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props"/>
+  <Import Project="$(VCTargetsPath)\BuildCustomizations\masm.props"/>
+  <ImportGroup Label="ExtensionSettings"/>
+  <ImportGroup Label="PropertySheets">
+    <Import Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props"/>
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros"/>
+  <PropertyGroup>
+    <ExecutablePath>$(ExecutablePath);$(MSBuildProjectDirectory)\.\bin\;$(MSBuildProjectDirectory)\.\bin\</ExecutablePath>
+    <IntDir>$(Configuration)\obj\$(ProjectName)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
+    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
+    <TargetName>$(ProjectName)</TargetName>
+    <TargetPath>$(OutDir)\$(ProjectName)$(TargetExt)</TargetPath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>third_party\skia\include\config;third_party\skia\include\core;third_party\skia\include\gpu;third_party\skia\include\views;third_party\skia\include\xml;third_party\skia\include\c;third_party\skia\include\pathops;third_party\skia\include\pipe;third_party\skia\gyp\config\win;third_party\skia\include\codec;third_party\skia\include\android;third_party\skia\include\effects;third_party\skia\include\images;third_party\skia\include\ports;third_party\skia\src\sfnt;third_party\skia\include\utils;third_party\skia\src\utils;third_party\skia\include\utils\win;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>/MP /we4189 %(AdditionalOptions)</AdditionalOptions>
+      <CompileAsWinRT>false</CompileAsWinRT>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <DisableSpecificWarnings>4275;4345;4355;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <ExceptionHandling>false</ExceptionHandling>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PreprocessorDefinitions>_DEBUG;SK_INTERNAL;SK_GAMMA_SRGB;SK_GAMMA_APPLY_TO_A8;SK_ALLOW_STATIC_GLOBAL_INITIALIZERS=1;SK_SUPPORT_GPU=1;SK_FORCE_DISTANCE_FIELD_TEXT=0;SK_BUILD_FOR_WIN32;_CRT_SECURE_NO_WARNINGS;GR_GL_FUNCTION_TYPE=__stdcall;_HAS_EXCEPTIONS=0;SK_DEVELOPER=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ProgramDataBaseFileName>$(OutDir)$(ProjectName).pdb</ProgramDataBaseFileName>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <TreatWarningAsError>true</TreatWarningAsError>
+      <WarningLevel>Level3</WarningLevel>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>OpenGL32.lib;usp10.lib;kernel32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;user32.lib;uuid.lib;odbc32.lib;odbccp32.lib;DelayImp.lib;windowscodecs.lib</AdditionalDependencies>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <LargeAddressAware>true</LargeAddressAware>
+      <OutputFile>$(OutDir)$(ProjectName)$(TargetExt)</OutputFile>
+    </Link>
+    <ResourceCompile>
+      <AdditionalIncludeDirectories>third_party\skia\include\config;third_party\skia\include\core;third_party\skia\include\gpu;third_party\skia\include\views;third_party\skia\include\xml;third_party\skia\include\c;third_party\skia\include\pathops;third_party\skia\include\pipe;third_party\skia\gyp\config\win;third_party\skia\include\codec;third_party\skia\include\android;third_party\skia\include\effects;third_party\skia\include\images;third_party\skia\include\ports;third_party\skia\src\sfnt;third_party\skia\include\utils;third_party\skia\src\utils;third_party\skia\include\utils\win;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>SK_INTERNAL;SK_GAMMA_SRGB;SK_GAMMA_APPLY_TO_A8;SK_ALLOW_STATIC_GLOBAL_INITIALIZERS=1;SK_SUPPORT_GPU=1;SK_FORCE_DISTANCE_FIELD_TEXT=0;SK_BUILD_FOR_WIN32;_CRT_SECURE_NO_WARNINGS;GR_GL_FUNCTION_TYPE=__stdcall;_HAS_EXCEPTIONS=0;SK_DEVELOPER=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>third_party\skia\include\config;third_party\skia\include\core;third_party\skia\include\gpu;third_party\skia\include\views;third_party\skia\include\xml;third_party\skia\include\c;third_party\skia\include\pathops;third_party\skia\include\pipe;third_party\skia\gyp\config\win;third_party\skia\include\codec;third_party\skia\include\android;third_party\skia\include\effects;third_party\skia\include\images;third_party\skia\include\ports;third_party\skia\src\sfnt;third_party\skia\include\utils;third_party\skia\src\utils;third_party\skia\include\utils\win;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>/MP /we4189 %(AdditionalOptions)</AdditionalOptions>
+      <CompileAsWinRT>false</CompileAsWinRT>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4275;4345;4355;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <ExceptionHandling>false</ExceptionHandling>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PreprocessorDefinitions>_DEBUG;SK_INTERNAL;SK_GAMMA_SRGB;SK_GAMMA_APPLY_TO_A8;SK_ALLOW_STATIC_GLOBAL_INITIALIZERS=1;SK_SUPPORT_GPU=1;SK_FORCE_DISTANCE_FIELD_TEXT=0;SK_BUILD_FOR_WIN32;_CRT_SECURE_NO_WARNINGS;GR_GL_FUNCTION_TYPE=__stdcall;_HAS_EXCEPTIONS=0;SK_DEVELOPER=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ProgramDataBaseFileName>$(OutDir)$(ProjectName).pdb</ProgramDataBaseFileName>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <TreatWarningAsError>true</TreatWarningAsError>
+      <WarningLevel>Level3</WarningLevel>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>OpenGL32.lib;usp10.lib;kernel32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;user32.lib;uuid.lib;odbc32.lib;odbccp32.lib;DelayImp.lib;windowscodecs.lib</AdditionalDependencies>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <LargeAddressAware>true</LargeAddressAware>
+      <OutputFile>$(OutDir)$(ProjectName)$(TargetExt)</OutputFile>
+    </Link>
+    <ResourceCompile>
+      <AdditionalIncludeDirectories>third_party\skia\include\config;third_party\skia\include\core;third_party\skia\include\gpu;third_party\skia\include\views;third_party\skia\include\xml;third_party\skia\include\c;third_party\skia\include\pathops;third_party\skia\include\pipe;third_party\skia\gyp\config\win;third_party\skia\include\codec;third_party\skia\include\android;third_party\skia\include\effects;third_party\skia\include\images;third_party\skia\include\ports;third_party\skia\src\sfnt;third_party\skia\include\utils;third_party\skia\src\utils;third_party\skia\include\utils\win;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>SK_INTERNAL;SK_GAMMA_SRGB;SK_GAMMA_APPLY_TO_A8;SK_ALLOW_STATIC_GLOBAL_INITIALIZERS=1;SK_SUPPORT_GPU=1;SK_FORCE_DISTANCE_FIELD_TEXT=0;SK_BUILD_FOR_WIN32;_CRT_SECURE_NO_WARNINGS;GR_GL_FUNCTION_TYPE=__stdcall;_HAS_EXCEPTIONS=0;SK_DEVELOPER=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>third_party\skia\include\config;third_party\skia\include\core;third_party\skia\include\gpu;third_party\skia\include\views;third_party\skia\include\xml;third_party\skia\include\c;third_party\skia\include\pathops;third_party\skia\include\pipe;third_party\skia\gyp\config\win;third_party\skia\include\codec;third_party\skia\include\android;third_party\skia\include\effects;third_party\skia\include\images;third_party\skia\include\ports;third_party\skia\src\sfnt;third_party\skia\include\utils;third_party\skia\src\utils;third_party\skia\include\utils\win;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>/MP /we4189 %(AdditionalOptions)</AdditionalOptions>
+      <CompileAsWinRT>false</CompileAsWinRT>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4275;4345;4355;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+      <ExceptionHandling>false</ExceptionHandling>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <Optimization>Full</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PreprocessorDefinitions>NDEBUG;SK_INTERNAL;SK_GAMMA_SRGB;SK_GAMMA_APPLY_TO_A8;SK_ALLOW_STATIC_GLOBAL_INITIALIZERS=1;SK_SUPPORT_GPU=1;SK_FORCE_DISTANCE_FIELD_TEXT=0;SK_BUILD_FOR_WIN32;_CRT_SECURE_NO_WARNINGS;GR_GL_FUNCTION_TYPE=__stdcall;_HAS_EXCEPTIONS=0;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ProgramDataBaseFileName>$(OutDir)$(ProjectName).pdb</ProgramDataBaseFileName>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <TreatWarningAsError>true</TreatWarningAsError>
+      <WarningLevel>Level3</WarningLevel>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>OpenGL32.lib;usp10.lib;kernel32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;user32.lib;uuid.lib;odbc32.lib;odbccp32.lib;DelayImp.lib;windowscodecs.lib</AdditionalDependencies>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <LargeAddressAware>true</LargeAddressAware>
+      <OutputFile>$(OutDir)$(ProjectName)$(TargetExt)</OutputFile>
+    </Link>
+    <ResourceCompile>
+      <AdditionalIncludeDirectories>third_party\skia\include\config;third_party\skia\include\core;third_party\skia\include\gpu;third_party\skia\include\views;third_party\skia\include\xml;third_party\skia\include\c;third_party\skia\include\pathops;third_party\skia\include\pipe;third_party\skia\gyp\config\win;third_party\skia\include\codec;third_party\skia\include\android;third_party\skia\include\effects;third_party\skia\include\images;third_party\skia\include\ports;third_party\skia\src\sfnt;third_party\skia\include\utils;third_party\skia\src\utils;third_party\skia\include\utils\win;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>SK_INTERNAL;SK_GAMMA_SRGB;SK_GAMMA_APPLY_TO_A8;SK_ALLOW_STATIC_GLOBAL_INITIALIZERS=1;SK_SUPPORT_GPU=1;SK_FORCE_DISTANCE_FIELD_TEXT=0;SK_BUILD_FOR_WIN32;_CRT_SECURE_NO_WARNINGS;GR_GL_FUNCTION_TYPE=__stdcall;_HAS_EXCEPTIONS=0;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>third_party\skia\include\config;third_party\skia\include\core;third_party\skia\include\gpu;third_party\skia\include\views;third_party\skia\include\xml;third_party\skia\include\c;third_party\skia\include\pathops;third_party\skia\include\pipe;third_party\skia\gyp\config\win;third_party\skia\include\codec;third_party\skia\include\android;third_party\skia\include\effects;third_party\skia\include\images;third_party\skia\include\ports;third_party\skia\src\sfnt;third_party\skia\include\utils;third_party\skia\src\utils;third_party\skia\include\utils\win;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>/MP /we4189 %(AdditionalOptions)</AdditionalOptions>
+      <CompileAsWinRT>false</CompileAsWinRT>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4275;4345;4355;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+      <ExceptionHandling>false</ExceptionHandling>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <Optimization>Full</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PreprocessorDefinitions>NDEBUG;SK_INTERNAL;SK_GAMMA_SRGB;SK_GAMMA_APPLY_TO_A8;SK_ALLOW_STATIC_GLOBAL_INITIALIZERS=1;SK_SUPPORT_GPU=1;SK_FORCE_DISTANCE_FIELD_TEXT=0;SK_BUILD_FOR_WIN32;_CRT_SECURE_NO_WARNINGS;GR_GL_FUNCTION_TYPE=__stdcall;_HAS_EXCEPTIONS=0;NDEBUG;SK_DEVELOPER=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ProgramDataBaseFileName>$(OutDir)$(ProjectName).pdb</ProgramDataBaseFileName>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <TreatWarningAsError>true</TreatWarningAsError>
+      <WarningLevel>Level3</WarningLevel>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>OpenGL32.lib;usp10.lib;kernel32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;user32.lib;uuid.lib;odbc32.lib;odbccp32.lib;DelayImp.lib;windowscodecs.lib</AdditionalDependencies>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <LargeAddressAware>true</LargeAddressAware>
+      <OutputFile>$(OutDir)$(ProjectName)$(TargetExt)</OutputFile>
+    </Link>
+    <ResourceCompile>
+      <AdditionalIncludeDirectories>third_party\skia\include\config;third_party\skia\include\core;third_party\skia\include\gpu;third_party\skia\include\views;third_party\skia\include\xml;third_party\skia\include\c;third_party\skia\include\pathops;third_party\skia\include\pipe;third_party\skia\gyp\config\win;third_party\skia\include\codec;third_party\skia\include\android;third_party\skia\include\effects;third_party\skia\include\images;third_party\skia\include\ports;third_party\skia\src\sfnt;third_party\skia\include\utils;third_party\skia\src\utils;third_party\skia\include\utils\win;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>SK_INTERNAL;SK_GAMMA_SRGB;SK_GAMMA_APPLY_TO_A8;SK_ALLOW_STATIC_GLOBAL_INITIALIZERS=1;SK_SUPPORT_GPU=1;SK_FORCE_DISTANCE_FIELD_TEXT=0;SK_BUILD_FOR_WIN32;_CRT_SECURE_NO_WARNINGS;GR_GL_FUNCTION_TYPE=__stdcall;_HAS_EXCEPTIONS=0;NDEBUG;SK_DEVELOPER=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release_Developer|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>third_party\skia\include\config;third_party\skia\include\core;third_party\skia\include\gpu;third_party\skia\include\views;third_party\skia\include\xml;third_party\skia\include\c;third_party\skia\include\pathops;third_party\skia\include\pipe;third_party\skia\gyp\config\win;third_party\skia\include\codec;third_party\skia\include\android;third_party\skia\include\effects;third_party\skia\include\images;third_party\skia\include\ports;third_party\skia\src\sfnt;third_party\skia\include\utils;third_party\skia\src\utils;third_party\skia\include\utils\win;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>/MP /we4189 %(AdditionalOptions)</AdditionalOptions>
+      <CompileAsWinRT>false</CompileAsWinRT>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4275;4345;4355;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
+      <ExceptionHandling>false</ExceptionHandling>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <Optimization>Full</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PreprocessorDefinitions>NDEBUG;SK_INTERNAL;SK_GAMMA_SRGB;SK_GAMMA_APPLY_TO_A8;SK_ALLOW_STATIC_GLOBAL_INITIALIZERS=1;SK_SUPPORT_GPU=1;SK_FORCE_DISTANCE_FIELD_TEXT=0;SK_BUILD_FOR_WIN32;_CRT_SECURE_NO_WARNINGS;GR_GL_FUNCTION_TYPE=__stdcall;_HAS_EXCEPTIONS=0;NDEBUG;SK_DEVELOPER=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ProgramDataBaseFileName>$(OutDir)$(ProjectName).pdb</ProgramDataBaseFileName>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <TreatWarningAsError>true</TreatWarningAsError>
+      <WarningLevel>Level3</WarningLevel>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>OpenGL32.lib;usp10.lib;kernel32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;user32.lib;uuid.lib;odbc32.lib;odbccp32.lib;DelayImp.lib;windowscodecs.lib</AdditionalDependencies>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <LargeAddressAware>true</LargeAddressAware>
+      <OutputFile>$(OutDir)$(ProjectName)$(TargetExt)</OutputFile>
+    </Link>
+    <ResourceCompile>
+      <AdditionalIncludeDirectories>third_party\skia\include\config;third_party\skia\include\core;third_party\skia\include\gpu;third_party\skia\include\views;third_party\skia\include\xml;third_party\skia\include\c;third_party\skia\include\pathops;third_party\skia\include\pipe;third_party\skia\gyp\config\win;third_party\skia\include\codec;third_party\skia\include\android;third_party\skia\include\effects;third_party\skia\include\images;third_party\skia\include\ports;third_party\skia\src\sfnt;third_party\skia\include\utils;third_party\skia\src\utils;third_party\skia\include\utils\win;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>SK_INTERNAL;SK_GAMMA_SRGB;SK_GAMMA_APPLY_TO_A8;SK_ALLOW_STATIC_GLOBAL_INITIALIZERS=1;SK_SUPPORT_GPU=1;SK_FORCE_DISTANCE_FIELD_TEXT=0;SK_BUILD_FOR_WIN32;_CRT_SECURE_NO_WARNINGS;GR_GL_FUNCTION_TYPE=__stdcall;_HAS_EXCEPTIONS=0;NDEBUG;SK_DEVELOPER=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>third_party\skia\include\config;third_party\skia\include\core;third_party\skia\include\gpu;third_party\skia\include\views;third_party\skia\include\xml;third_party\skia\include\c;third_party\skia\include\pathops;third_party\skia\include\pipe;third_party\skia\gyp\config\win;third_party\skia\include\codec;third_party\skia\include\android;third_party\skia\include\effects;third_party\skia\include\images;third_party\skia\include\ports;third_party\skia\src\sfnt;third_party\skia\include\utils;third_party\skia\src\utils;third_party\skia\include\utils\win;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>/MP /we4189 %(AdditionalOptions)</AdditionalOptions>
+      <CompileAsWinRT>false</CompileAsWinRT>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4275;4345;4355;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
+      <ExceptionHandling>false</ExceptionHandling>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <Optimization>Full</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PreprocessorDefinitions>NDEBUG;SK_INTERNAL;SK_GAMMA_SRGB;SK_GAMMA_APPLY_TO_A8;SK_ALLOW_STATIC_GLOBAL_INITIALIZERS=1;SK_SUPPORT_GPU=1;SK_FORCE_DISTANCE_FIELD_TEXT=0;SK_BUILD_FOR_WIN32;_CRT_SECURE_NO_WARNINGS;GR_GL_FUNCTION_TYPE=__stdcall;_HAS_EXCEPTIONS=0;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ProgramDataBaseFileName>$(OutDir)$(ProjectName).pdb</ProgramDataBaseFileName>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <TreatWarningAsError>true</TreatWarningAsError>
+      <WarningLevel>Level3</WarningLevel>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>OpenGL32.lib;usp10.lib;kernel32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;user32.lib;uuid.lib;odbc32.lib;odbccp32.lib;DelayImp.lib;windowscodecs.lib</AdditionalDependencies>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <LargeAddressAware>true</LargeAddressAware>
+      <OutputFile>$(OutDir)$(ProjectName)$(TargetExt)</OutputFile>
+    </Link>
+    <ResourceCompile>
+      <AdditionalIncludeDirectories>third_party\skia\include\config;third_party\skia\include\core;third_party\skia\include\gpu;third_party\skia\include\views;third_party\skia\include\xml;third_party\skia\include\c;third_party\skia\include\pathops;third_party\skia\include\pipe;third_party\skia\gyp\config\win;third_party\skia\include\codec;third_party\skia\include\android;third_party\skia\include\effects;third_party\skia\include\images;third_party\skia\include\ports;third_party\skia\src\sfnt;third_party\skia\include\utils;third_party\skia\src\utils;third_party\skia\include\utils\win;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>SK_INTERNAL;SK_GAMMA_SRGB;SK_GAMMA_APPLY_TO_A8;SK_ALLOW_STATIC_GLOBAL_INITIALIZERS=1;SK_SUPPORT_GPU=1;SK_FORCE_DISTANCE_FIELD_TEXT=0;SK_BUILD_FOR_WIN32;_CRT_SECURE_NO_WARNINGS;GR_GL_FUNCTION_TYPE=__stdcall;_HAS_EXCEPTIONS=0;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <None Include="using_skia.gyp"/>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="app\entrypoint.cpp"/>
+    <ClCompile Include="app\input_stream.cpp"/>
+    <ClCompile Include="app\session.cpp"/>
+    <ClCompile Include="app\window.cpp"/>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="third_party\skia\gyp\skia_lib.vcxproj">
+      <Project>{AA8BB20A-BFB7-C0B2-DC4A-0A33E6D86E70}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="third_party\skia\gyp\views.vcxproj">
+      <Project>{C3E8368B-CB6C-E4BE-1D08-B4A7CBCF9420}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="third_party\skia\gyp\core.vcxproj">
+      <Project>{B7760B5E-BFA8-486B-ACFD-49E3A6DE8E76}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="third_party\skia\gyp\codec.vcxproj">
+      <Project>{FA66FC87-9071-598D-041B-BC9AE1089AD7}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="third_party\skia\gyp\giflib.vcxproj">
+      <Project>{56C8585E-7A13-8F51-F417-0D0576D49792}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="third_party\skia\gyp\libjpeg-turbo-selector.vcxproj">
+      <Project>{14C5B93A-3F46-F713-7C3E-730FA1019C15}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="third_party\skia\gyp\libjpeg-turbo.vcxproj">
+      <Project>{4FCA04C5-E602-8C84-4529-30ACEE90369F}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+    </ProjectReference>
+    <ProjectReference Include="third_party\skia\gyp\libpng.vcxproj">
+      <Project>{438A23AC-5FA1-F065-52E3-BACABEB7A989}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="third_party\skia\gyp\libpng_static.vcxproj">
+      <Project>{BB05E5DA-2420-CBCC-BFF2-0E2FB348B616}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="third_party\skia\gyp\zlib.vcxproj">
+      <Project>{C339C1C4-80AD-4576-7D6B-6BD5D6E2EA68}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="third_party\skia\gyp\zlib_x86_simd.vcxproj">
+      <Project>{35CC70F1-585F-55F5-7169-521DA34AFCCA}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="third_party\skia\gyp\libpng_static_neon.vcxproj">
+      <Project>{16B65F3E-7393-42B7-FF02-0CE2C6F9FF2C}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="third_party\skia\gyp\libwebp.vcxproj">
+      <Project>{2D3E8F7C-FE4F-A655-0F87-E5D47ECD917C}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="third_party\skia\gyp\libwebp_dec.vcxproj">
+      <Project>{201D20B7-BFD3-0C47-F8A2-49D36441543C}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="third_party\skia\gyp\libwebp_demux.vcxproj">
+      <Project>{59488891-45FB-EB76-067A-618F2932B6A3}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="third_party\skia\gyp\libwebp_dsp.vcxproj">
+      <Project>{B24C04BC-9391-5C53-FCE7-C453747F9378}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="third_party\skia\gyp\libwebp_dsp_neon.vcxproj">
+      <Project>{3C5FAA92-E19B-0F59-4B42-4DE46C142EE0}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="third_party\skia\gyp\libwebp_enc.vcxproj">
+      <Project>{F635F977-A2A6-0142-5C1B-2499A8F85BF6}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="third_party\skia\gyp\libwebp_dsp_enc.vcxproj">
+      <Project>{8E9CC747-4F5A-0633-1CC5-87BBDD56399E}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="third_party\skia\gyp\libwebp_utils.vcxproj">
+      <Project>{F54D683C-2D19-21ED-4AD1-C7D4924A5A4D}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="third_party\skia\gyp\codec_android.vcxproj">
+      <Project>{BAB455F7-5072-C44B-BC89-8696C99CD6D8}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="third_party\skia\gyp\effects.vcxproj">
+      <Project>{37CBE292-62AE-6DC4-2383-B7E19083950C}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="third_party\skia\gyp\images.vcxproj">
+      <Project>{65D56779-8B0C-9F4F-57C8-38A13671B5E5}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="third_party\skia\gyp\libetc1.vcxproj">
+      <Project>{D35C81CF-0FF9-0683-70B7-40B9761A2783}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="third_party\skia\gyp\libSkKTX.vcxproj">
+      <Project>{E3834188-5E59-6029-10B7-001324885B61}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="third_party\skia\gyp\utils.vcxproj">
+      <Project>{02662B02-5C97-92EA-9792-10AF0378DE47}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="third_party\skia\gyp\opts.vcxproj">
+      <Project>{E6C7FF5F-F2B4-4353-B45E-77CD72D12BFE}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="third_party\skia\gyp\opts_ssse3.vcxproj">
+      <Project>{E80DD4E7-8BDA-DDDF-8BE7-FC20ED41F41D}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="third_party\skia\gyp\opts_sse41.vcxproj">
+      <Project>{24BB954A-C20F-2F0D-56CB-DA09C4C25845}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="third_party\skia\gyp\opts_sse42.vcxproj">
+      <Project>{C850F3D6-AACC-58AA-DC5A-0F6D457AF22C}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="third_party\skia\gyp\opts_avx.vcxproj">
+      <Project>{6C6DCCA0-19E5-1BAD-B714-6EF0AF8D54F1}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="third_party\skia\gyp\opts_avx2.vcxproj">
+      <Project>{A766B00C-0D4E-6CEC-6AB8-96364FB014CA}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="third_party\skia\gyp\ports.vcxproj">
+      <Project>{8EC63885-3FEE-0904-44D5-AE84CAB80D74}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="third_party\skia\gyp\sfnt.vcxproj">
+      <Project>{EF62BE51-3AD7-5A76-BFCD-49E296333B5E}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="third_party\skia\gyp\skgpu.vcxproj">
+      <Project>{671CC131-4874-3884-DD12-F3D7F062DD20}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="third_party\skia\gyp\xml.vcxproj">
+      <Project>{B80C6A94-785E-650D-D3CD-C5C5237A3BE2}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets"/>
+  <Import Project="$(VCTargetsPath)\BuildCustomizations\masm.targets"/>
+  <ImportGroup Label="ExtensionTargets"/>
+</Project>

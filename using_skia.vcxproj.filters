@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="app">
+      <UniqueIdentifier>{796C56B0-A938-902A-0081-40464DA4EDD9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="app">
+      <UniqueIdentifier>{796C56B0-A938-902A-0081-40464DA4EDD9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="app">
+      <UniqueIdentifier>{796C56B0-A938-902A-0081-40464DA4EDD9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="app">
+      <UniqueIdentifier>{796C56B0-A938-902A-0081-40464DA4EDD9}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="app\entrypoint.cpp">
+      <Filter>app</Filter>
+    </ClCompile>
+    <ClCompile Include="app\input_stream.cpp">
+      <Filter>app</Filter>
+    </ClCompile>
+    <ClCompile Include="app\session.cpp">
+      <Filter>app</Filter>
+    </ClCompile>
+    <ClCompile Include="app\window.cpp">
+      <Filter>app</Filter>
+    </ClCompile>
+    <None Include="using_skia.gyp"/>
+  </ItemGroup>
+</Project>

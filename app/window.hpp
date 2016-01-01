@@ -4,6 +4,8 @@
 #include "SkSurface.h"
 #include "SkWindow.h"
 
+#include "common.hpp"
+
 class GrContext;
 struct GrGLInterface;
 class GrRenderTarget;
@@ -22,6 +24,9 @@ public:
 
   MainWindow (void* hwnd);
   virtual ~MainWindow () override;
+
+  RSKIA_NO_COPY_MOVE(MainWindow);
+
 
   // Changes the device type of the object.
   bool setUpBackend ();

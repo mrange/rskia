@@ -143,4 +143,4 @@ $Model =
 #    },
   ]
 
-CarnelianExecutor.execute_metaprogram_to_file "generated_cpp.mp"
+CarnelianExecutor.execute_metaprogram_to_file "generated_message_handler.mp", "../app/generated_message_handler.hpp"

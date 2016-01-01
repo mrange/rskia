@@ -4,6 +4,7 @@
 #ifndef RSKIA_GENERATED_HPP
 #define RSKIA_GENERATED_HPP
 
+#include "common.hpp"
 #include "input_stream.hpp"
 
 @@> for method in $Model
@@ -18,7 +19,7 @@
 // Message__@@=xname=@@_@@=mverb=@@_@@=mnoun=@@ (@@=mid=@@)
 struct Message__@@=xname=@@_@@=mverb=@@_@@=mnoun=@@
 {
-  Message__@@=xname=@@_@@=mverb=@@_@@=mnoun=@@ () noexcept
+  Message__@@=xname=@@_@@=mverb=@@_@@=mnoun=@@ ()
 @@> delimiter = ": "
 @@> for parameter in (xprependParameters + mparameters)
 @@>   ptype         = parameter.get :type
@@ -31,9 +32,7 @@ struct Message__@@=xname=@@_@@=mverb=@@_@@=mnoun=@@
   {
   }
 
-  Message__@@=xname=@@_@@=mverb=@@_@@=mnoun=@@ (Message__@@=xname=@@_@@=mverb=@@_@@=mnoun=@@ &&) = default;
-  Message__@@=xname=@@_@@=mverb=@@_@@=mnoun=@@ & operator= (Message__@@=xname=@@_@@=mverb=@@_@@=mnoun=@@ &&) = default;
-
+  RSKIA_ONLY_MOVE (Message__@@=xname=@@_@@=mverb=@@_@@=mnoun=@@);
 
   void unserialize (input_stream & is)
   {
@@ -118,7 +117,7 @@ void dispatch (input_stream & is, message_visitor_i & v)
 #endif // RSKIA_GENERATED_HPP
 @@+ $TypeMap =
 @@+   {
-@@+     "string"    => "std::string"  ,
+@@+     "string"    => "std::wstring" ,
 @@+     "int"       => "std::int32_t" ,
 @@+     "double"    => "double"       ,
 @@+     "bitmap_id" => "bitmap_id"    ,

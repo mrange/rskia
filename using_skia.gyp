@@ -1,7 +1,4 @@
 {
-  'includes': [
-    'third_party/skia/gyp/apptype_console.gypi',
-  ],
   'targets': [
     {
       'configurations': {
@@ -9,7 +6,7 @@
         'Release': { }
       },
       'target_name': 'using_skia',
-      'type': 'executable',
+      'type': 'shared_library',
       'dependencies': [
         'third_party/skia/gyp/skia_lib.gyp:skia_lib',
         'third_party/skia/gyp/views.gyp:views'
@@ -22,14 +19,16 @@
         'third_party/skia/include/xml'
       ],
       'sources': [
-        'app/main.cpp',
+        'app/entrypoint.cpp',
+        'app/input_stream.cpp',
+        'app/session.cpp',
         'app/window.cpp'
       ],
       'ldflags': [
         '-lskia', '-stdlib=libc++', '-std=c++11'
       ],
       'cflags': [
-        '-Werror', '-W', '-Wall', '-Wextra', '-Wno-unused-parameter', '-g', '-O0'
+        '-Werror', '-W', '-Wall', '-Wextra', '-Wno-unused-parameter', '-g', '-O3'
       ]
     }
   ]
